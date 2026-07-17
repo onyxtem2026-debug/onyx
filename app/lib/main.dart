@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/reels_screen.dart';
-import 'screens/profile_screen.dart'; 
+import 'screens/home_screen.dart';
 
 void main() {
   runApp(const OnyxApp());
@@ -12,15 +12,9 @@ class OnyxApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'ONYX',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: const Color(0xFF0D0D0D),
-        primaryColor: const Color(0xFFFFD700),
-        colorScheme: const ColorScheme.dark(
-          primary: Color(0xFFFFD700),
-          secondary: Color(0xFF1F1F1F),
-        ),
+        scaffoldBackgroundColor: Colors.black,
       ),
       home: const MainNavigationScreen(),
     );
@@ -38,11 +32,11 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _screens = [
-    const Center(child: Text('🏠 الرئيسية', style: TextStyle(fontSize: 18))),
-    const ReelsScreen(), 
-    const Center(child: Text('➕ إضافة', style: TextStyle(fontSize: 18))),
-    const Center(child: Text('💬 الرسائل', style: TextStyle(fontSize: 18))),
-    const ProfileScreen(), 
+    const HomeScreen(),
+    const ReelsScreen(),
+    const Center(child: Text('إضافة', style: TextStyle(color: Colors.white))),
+    const Center(child: Text('الرسائل', style: TextStyle(color: Colors.white))),
+    const Center(child: Text('الملف الشخصي', style: TextStyle(color: Colors.white))),
   ];
 
   @override
@@ -53,8 +47,8 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         currentIndex: _selectedIndex,
         onTap: (index) => setState(() => _selectedIndex = index),
         type: BottomNavigationBarType.fixed,
-        backgroundColor: const Color(0xFF0D0D0D),
-        selectedItemColor: const Color(0xFFFFD700),
+        backgroundColor: Colors.black,
+        selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'الرئيسية'),

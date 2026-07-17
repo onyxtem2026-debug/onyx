@@ -1,20 +1,41 @@
 import 'package:flutter/material.dart';
-import 'screens/main_screen.dart'; // استدعاء ملف التنقل الرئيسي
+import 'package:flutter/services.dart';
+import 'screens/main_screen.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.light,
+      systemNavigationBarColor: Colors.black,
+      systemNavigationBarIconBrightness: Brightness.light,
+    ),
+  );
+
+  runApp(const OnyxApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class OnyxApp extends StatelessWidget {
+  const OnyxApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'ONYX',
       debugShowCheckedModeBanner: false,
-      title: 'ONYX App',
-      theme: ThemeData.dark(), // ثيم أسود افتراضي
-      home: const MainScreen(), // تعيين الشاشة الرئيسية كـ MainScreen
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        useMaterial3: true,
+        scaffoldBackgroundColor: const Color(0xFF08080F),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF7C4DFF),
+          brightness: Brightness.dark,
+        ),
+        fontFamily: 'Roboto',
+      ),
+      home: const MainScreen(),
     );
   }
 }

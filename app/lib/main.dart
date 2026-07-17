@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/reels_screen.dart';
+import 'screens/profile_screen.dart'; 
 
 void main() {
   runApp(const OnyxApp());
@@ -41,7 +42,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     const ReelsScreen(), 
     const Center(child: Text('➕ إضافة', style: TextStyle(fontSize: 18))),
     const Center(child: Text('💬 الرسائل', style: TextStyle(fontSize: 18))),
-    const Center(child: Text('👤 الملف', style: TextStyle(fontSize: 18))),
+    const ProfileScreen(), 
   ];
 
   @override
@@ -66,4 +67,3 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     );
   }
 }
-

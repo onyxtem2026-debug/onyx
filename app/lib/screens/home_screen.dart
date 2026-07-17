@@ -47,10 +47,34 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           
-          // 2. قائمة المنشورات (فارغة حالياً للتركيز على الستوري)
-          const Expanded(
-            child: Center(
-              child: Text('جاري تحميل المنشورات...', style: TextStyle(color: Colors.white)),
+          // 2. قائمة المنشورات
+          Expanded(
+            child: ListView.builder(
+              itemCount: 5,
+              itemBuilder: (context, index) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const ListTile(
+                      leading: CircleAvatar(backgroundColor: Colors.grey, child: Icon(Icons.person, color: Colors.white)),
+                      title: Text('mustafa_ali', style: TextStyle(color: Colors.white)),
+                    ),
+                    Image.network('https://picsum.photos/400/300?random=$index'),
+                    Row(
+                      children: [
+                        IconButton(icon: const Icon(Icons.favorite, color: Colors.red), onPressed: () {}), // لايك أحمر
+                        IconButton(icon: const Icon(Icons.chat_bubble_outline, color: Colors.white), onPressed: () {}), // تعليق
+                        IconButton(icon: const Icon(Icons.send_outlined, color: Colors.white), onPressed: () {}), // مشاركة
+                      ],
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                      child: Text('هذا منشور احترافي في ONYX! 🔥', style: TextStyle(color: Colors.white)),
+                    ),
+                    const SizedBox(height: 20),
+                  ],
+                );
+              },
             ),
           ),
         ],

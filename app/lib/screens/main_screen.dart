@@ -13,40 +13,67 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
-  // قائمة الشاشات
   final List<Widget> _pages = [
     const HomeScreen(),
-    const Center(child: Text("صفحة البحث", style: TextStyle(color: Colors.white))), // مؤقت
+    const Center(
+      child: Text(
+        "Explore",
+        style: TextStyle(color: Colors.white, fontSize: 24),
+      ),
+    ),
     const ReelsScreen(),
-    const Center(child: Text("صفحة المتجر", style: TextStyle(color: Colors.white))), // مؤقت
+    const Center(
+      child: Text(
+        "Messages",
+        style: TextStyle(color: Colors.white, fontSize: 24),
+      ),
+    ),
     const ProfileScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black,
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.grey,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        currentIndex: _selectedIndex,
-        onTap: (index) => setState(() => _selectedIndex = index),
-        items: [
-          const BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: ''),
-          const BottomNavigationBarItem(icon: Icon(Icons.search), label: ''),
-          const BottomNavigationBarItem(icon: Icon(Icons.play_arrow_outlined), label: ''),
-          const BottomNavigationBarItem(icon: Icon(Icons.shopping_bag_outlined), label: ''),
-          BottomNavigationBarItem(
-            icon: Container(
-              padding: const EdgeInsets.all(2),
-              decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
-              child: const CircleAvatar(radius: 12, backgroundImage: NetworkImage('https://i.pravatar.cc/150')),
-            ),
-            label: '',
+      extendBody: true,
+      body: SafeArea(
+        child: IndexedStack(
+          index: _selectedIndex,
+          children: _pages,
+        ),
+      ),
+      bottomNavigationBar: NavigationBar(
+        backgroundColor: const Color(0xFF08080F),
+        height: 72,
+        selectedIndex: _selectedIndex,
+        indicatorColor: const Color(0xFF7C4DFF).withOpacity(.18),
+        onDestinationSelected: (index) {
+          setState(() => _selectedIndex = index);
+        },
+        destinations: const [
+          NavigationDestination(
+            icon: Icon(Icons.home_outlined),
+            selectedIcon: Icon(Icons.home),
+            label: "Home",
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.search),
+            selectedIcon: Icon(Icons.search),
+            label: "Explore",
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.play_circle_outline),
+            selectedIcon: Icon(Icons.play_circle),
+            label: "Reels",
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.chat_bubble_outline),
+            selectedIcon: Icon(Icons.chat_bubble),
+            label: "Messages",
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.person_outline),
+            selectedIcon: Icon(Icons.person),
+            label: "Profile",
           ),
         ],
       ),

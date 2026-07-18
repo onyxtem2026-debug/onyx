@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/onyx_appbar.dart';
 import '../widgets/stories_widget.dart';
+import '../widgets/post_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -12,24 +13,17 @@ class HomeScreen extends StatelessWidget {
 
       appBar: const OnyxAppBar(),
 
-      body: const Column(
-        children: [
+      body: ListView(
+        children: const [
           SizedBox(height: 8),
 
           StoriesWidget(),
 
-          Expanded(
-            child: Center(
-              child: Text(
-                "منشورات ONYX قريباً...",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
+          SizedBox(height: 8),
+
+          PostCard(),
+          PostCard(),
+          PostCard(),
         ],
       ),
     );

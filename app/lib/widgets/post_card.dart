@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
-class PostCard extends StatelessWidget {
+class PostCard extends StatefulWidget {
   const PostCard({super.key});
+
+  @override
+  State<PostCard> createState() => _PostCardState();
+}
+
+class _PostCardState extends State<PostCard> {
+  bool isLiked = false;
+  int likes = 8532;
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +22,13 @@ class PostCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
           const ListTile(
             leading: CircleAvatar(
               radius: 22,
-              backgroundImage:
-                  NetworkImage("https://i.pravatar.cc/300"),
+              backgroundImage: NetworkImage(
+                "https://i.pravatar.cc/300",
+              ),
             ),
-
             title: Row(
               children: [
                 Text(
@@ -31,9 +38,7 @@ class PostCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-
                 SizedBox(width: 5),
-
                 Icon(
                   Icons.verified,
                   color: Colors.blue,
@@ -41,7 +46,6 @@ class PostCard extends StatelessWidget {
                 ),
               ],
             ),
-
             subtitle: Text(
               "Baghdad • 2 min",
               style: TextStyle(color: Colors.grey),
@@ -56,37 +60,69 @@ class PostCard extends StatelessWidget {
             ),
           ),
 
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 12,
+              vertical: 8,
+            ),
             child: Row(
               children: [
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      isLiked = !isLiked;
 
-                Icon(Icons.favorite_border,
-                    color: Colors.white),
+                      if (isLiked) {
+                        likes++;
+                      } else {
+                        likes--;
+                      }
+                    });
+                  },
+                  icon: Icon(
+                    isLiked
+                        ? Icons.favorite
+                        : Icons.favorite_border,
+                    color:
+                        isLiked ? Colors.red : Colors.white,
+                  ),
+                ),
 
-                SizedBox(width: 18),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.chat_bubble_outline,
+                    color: Colors.white,
+                  ),
+                ),
 
-                Icon(Icons.chat_bubble_outline,
-                    color: Colors.white),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.send_outlined,
+                    color: Colors.white,
+                  ),
+                ),
 
-                SizedBox(width: 18),
+                const Spacer(),
 
-                Icon(Icons.send_outlined,
-                    color: Colors.white),
-
-                Spacer(),
-
-                Icon(Icons.bookmark_border,
-                    color: Colors.white),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.bookmark_border,
+                    color: Colors.white,
+                  ),
+                ),
               ],
             ),
           ),
 
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 14),
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 14),
             child: Text(
-              "8,532 Likes",
-              style: TextStyle(
+              "$likes Likes",
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
@@ -94,7 +130,12 @@ class PostCard extends StatelessWidget {
           ),
 
           const Padding(
-            padding: EdgeInsets.fromLTRB(14, 8, 14, 16),
+            padding: EdgeInsets.fromLTRB(
+              14,
+              8,
+              14,
+              16,
+            ),
             child: Text(
               "🚀 Welcome to ONYX. The next generation social platform.",
               style: TextStyle(

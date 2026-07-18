@@ -6,38 +6,43 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: const Color(0xFF08080F),
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: const Color(0xFF08080F),
+        elevation: 0,
+        centerTitle: true,
         title: Container(
           height: 45,
           decoration: BoxDecoration(
-            color: Colors.grey.shade900,
-            borderRadius: BorderRadius.circular(12),
+            color: const Color(0xFF1A1A24),
+            borderRadius: BorderRadius.circular(15),
           ),
           child: const TextField(
             style: TextStyle(color: Colors.white),
             decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: "Search",
+              hintText: "Search ONYX",
               hintStyle: TextStyle(color: Colors.grey),
               prefixIcon: Icon(Icons.search, color: Colors.grey),
+              border: InputBorder.none,
             ),
           ),
         ),
       ),
       body: GridView.builder(
-        padding: const EdgeInsets.all(2),
+        padding: const EdgeInsets.all(6),
         itemCount: 30,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
-          crossAxisSpacing: 2,
-          mainAxisSpacing: 2,
+          crossAxisSpacing: 4,
+          mainAxisSpacing: 4,
         ),
         itemBuilder: (context, index) {
-          return Image.network(
-            "https://picsum.photos/300/300?random=$index",
-            fit: BoxFit.cover,
+          return ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: Image.network(
+              "https://picsum.photos/400/400?random=$index",
+              fit: BoxFit.cover,
+            ),
           );
         },
       ),

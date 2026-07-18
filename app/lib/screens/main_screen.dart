@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
+import 'search_screen.dart';
 import 'reels_screen.dart';
 import 'profile_screen.dart';
 
@@ -15,12 +16,7 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> _pages = [
     const HomeScreen(),
-    const Center(
-      child: Text(
-        "Explore",
-        style: TextStyle(color: Colors.white, fontSize: 24),
-      ),
-    ),
+    const SearchScreen(),
     const ReelsScreen(),
     const Center(
       child: Text(
@@ -58,7 +54,7 @@ class _MainScreenState extends State<MainScreen> {
           NavigationDestination(
             icon: Icon(Icons.search),
             selectedIcon: Icon(Icons.search),
-            label: "Explore",
+            label: "Search",
           ),
           NavigationDestination(
             icon: Icon(Icons.play_circle_outline),

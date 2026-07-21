@@ -1,5 +1,12 @@
-/// ONYX App Router
+/// ============================================================
+/// ONYX APP
+/// App Router
+/// ============================================================
 
 class AppRouter {
-  const AppRouter._();
+  AppRouter._();
+
+  static Future<void> initialize() async {
+    // سيتم إعداد GoRouter هنا لاحقًا
+  }
 }

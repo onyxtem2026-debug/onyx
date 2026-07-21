@@ -6,6 +6,8 @@ import 'core/services/app_service.dart';
 import 'core/storage/app_storage.dart';
 import 'routes/router/app_router.dart';
 
+import 'features/auth/presentation/pages/splash_page.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -28,18 +30,7 @@ class OnyxApp extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.dark,
 
-      // مؤقتًا حتى نبني Router الحقيقي
-      home: const Scaffold(
-        body: Center(
-          child: Text(
-            'ONYX',
-            style: TextStyle(
-              fontSize: 40,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ),
+      home: const SplashPage(),
     );
   }
 }

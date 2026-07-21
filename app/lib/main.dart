@@ -1,6 +1,18 @@
 import 'package:flutter/material.dart';
 
-void main() {
+import 'core/theme/app_theme.dart';
+import 'core/config/app_config.dart';
+import 'core/services/app_service.dart';
+import 'core/storage/app_storage.dart';
+import 'routes/router/app_router.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await AppService.initialize();
+  await AppStorage.initialize();
+  await AppRouter.initialize();
+
   runApp(const OnyxApp());
 }
 
@@ -10,72 +22,21 @@ class OnyxApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'ONYX',
+      title: AppConfig.appName,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        scaffoldBackgroundColor: const Color(0xFF0B0B0B),
-        primaryColor: const Color(0xFF3B82F6),
-      ),
-      home: const SplashScreen(),
-    );
-  }
-}
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.dark,
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
-
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-
-  @override
-  void initState() {
-    super.initState();
-
-    Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (_) => const WelcomeScreen(),
-        ),
-      );
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text(
-          "ONYX",
-          style: TextStyle(
-            fontSize: 42,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-            letterSpacing: 4,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text(
-          "Welcome to ONYX",
-          style: TextStyle(
-            fontSize: 28,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
+      // مؤقتًا حتى نبني Router الحقيقي
+      home: const Scaffold(
+        body: Center(
+          child: Text(
+            'ONYX',
+            style: TextStyle(
+              fontSize: 40,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ),

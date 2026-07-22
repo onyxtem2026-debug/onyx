@@ -6,7 +6,7 @@ import 'core/services/app_service.dart';
 import 'core/storage/app_storage.dart';
 import 'routes/router/app_router.dart';
 
-import 'features/auth/presentation/pages/splash_page.dart';
+import 'features/home/presentation/pages/home_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,7 +30,7 @@ class OnyxApp extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.dark,
 
-      home: const SplashPage(),
+      home: const HomeScreen(),
     );
   }
 }

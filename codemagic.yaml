@@ -1,0 +1,20 @@
+workflows:
+  onyx-android:
+    name: ONYX Android
+
+    environment:
+      flutter: stable
+
+    scripts:
+      - name: Get Flutter packages
+        script: |
+          cd app
+          flutter pub get
+
+      - name: Build APK
+        script: |
+          cd app
+          flutter build apk --debug
+
+    artifacts:
+      - app/build/app/outputs/flutter-apk/*.apk

@@ -1,0 +1,17 @@
+name: onyx_auth
+description: Authentication package for ONYX.
+publish_to: none
+
+version: 1.0.0
+
+environment:
+  sdk: ">=3.8.0 <4.0.0"
+
+resolution: workspace
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_lints: ^5.0.0

@@ -1,0 +1,20 @@
+workflows:
+  android-release:
+    name: ONYX Android Release
+
+    environment:
+      flutter: stable
+
+    scripts:
+      - name: Get Flutter packages
+        script: |
+          cd apps/mobile
+          flutter pub get
+
+      - name: Build APK
+        script: |
+          cd apps/mobile
+          flutter build apk --release
+
+    artifacts:
+      - apps/mobile/build/**/outputs/**/*.apk
